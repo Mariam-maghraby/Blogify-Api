@@ -4,10 +4,10 @@ Rails.application.routes.draw do
 
   # Resources
   resources :posts
-  resources :comments, only: [:create, :update, :destroy]
-  resources :users, only: [:index, :update, :destroy]
+  resources :comments, only: [ :create, :update, :destroy ]
+  resources :users, only: [ :index, :update, :destroy ]
 
   # Authentication
-  post '/signup', to: 'users#create'
-  post '/login', to: 'sessions#create'
+  post "/signup", to: "users#create"
+  post "/login", to: "sessions#create"
 end

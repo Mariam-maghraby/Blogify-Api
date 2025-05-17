@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-    before_action :authorize_request, only: [:index, :update, :destroy]
+    before_action :authorize_request, only: [ :index, :update, :destroy ]
 
     def index
         users = User.all
@@ -19,7 +19,7 @@ class UsersController < ApplicationController
     # def show
     #     render json: @current_user
     # end
-    
+
     def update
         requested_user_id = params[:id].to_i
 
@@ -52,9 +52,9 @@ class UsersController < ApplicationController
     def user_params
         params.require(:user).permit(:name, :email, :password, :password_confirmation)
       end
-    
-      
+
+
     def authorize_user
-    render json: { error: 'Unauthorized' }, status: :unauthorized unless @current_user
+    render json: { error: "Unauthorized" }, status: :unauthorized unless @current_user
     end
 end

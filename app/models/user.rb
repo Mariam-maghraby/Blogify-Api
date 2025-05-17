@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-    # Associations
+  # Associations
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
 

@@ -1,7 +1,7 @@
 class CommentsController < ApplicationController
-  before_action :authorize_request, only: [:create, :update, :destroy]
-  before_action :set_comment, only: [:update, :destroy]
-  before_action :authorize_user!, only: [:update, :destroy]
+  before_action :authorize_request, only: [ :create, :update, :destroy ]
+  before_action :set_comment, only: [ :update, :destroy ]
+  before_action :authorize_user!, only: [ :update, :destroy ]
 
     def create
         @comment = current_user.comments.build(comment_params)
@@ -30,12 +30,12 @@ class CommentsController < ApplicationController
     def set_comment
         @comment = Comment.find(params[:id])
       rescue ActiveRecord::RecordNotFound
-        render json: { error: 'Comment not found' }, status: :not_found
+        render json: { error: "Comment not found" }, status: :not_found
     end
 
 
     def authorize_user!
-        render json: { error: 'Unauthorized' }, status: :unauthorized unless @comment.user == current_user
+        render json: { error: "Unauthorized" }, status: :unauthorized unless @comment.user == current_user
     end
 
     def comment_params
