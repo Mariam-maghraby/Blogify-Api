@@ -4,12 +4,12 @@ class PostsController < ApplicationController
     before_action :authorize_user!, only: [:update, :destroy]
 
     def index
-        @posts = Post.all
-        render json: @posts, include: [:user, :tags, :comments]
+      @posts = Post.all
+      render json: @posts  # Uses PostSerializer if configured
     end
 
     def show
-        render json: @post, include: [:user, :tags, :comments]
+      render json: @post  
     end
 
     def create
@@ -17,11 +17,11 @@ class PostsController < ApplicationController
 
       if params[:post][:tags].present?
         params[:post][:tags].each do |tag_name|
-          tag = Tag.find_or_create_by(name: tag_name.strip)  # Finds or creates tag by name
+          tag = Tag.find_or_create_by(name: tag_name.strip)
           @post.tags << tag unless @post.tags.include?(tag)
         end
       end
-    
+
       if @post.save
         render json: @post, status: :created
       else
@@ -30,16 +30,16 @@ class PostsController < ApplicationController
     end
 
     def update
-        if @post.update(post_params)
-          render json: @post
-        else
-          render json: @post.errors, status: :unprocessable_entity
-        end
+      if @post.update(post_params)
+        render json: @post
+      else
+        render json: @post.errors, status: :unprocessable_entity
+      end
     end
 
     def destroy
-        @post.destroy
-        head :no_content
+      @post.destroy
+      head :no_content
     end
 
     private
@@ -51,6 +51,6 @@ class PostsController < ApplicationController
     end
 
     def post_params
-        params.require(:post).permit(:title, :body, tag_ids: [])
+      params.require(:post).permit(:title, :body, tag_ids: [])
     end
 end
