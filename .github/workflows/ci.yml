@@ -24,6 +24,7 @@ jobs:
 
   lint:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -69,12 +70,9 @@ jobs:
           ruby-version: .ruby-version
           bundler-cache: true
 
-      - name: Make Rails script executable
-        run: chmod +x bin/rails
-
       - name: Run tests
         env:
           RAILS_ENV: test
           DATABASE_URL: postgres://postgres:postgres@localhost:5432
           # REDIS_URL: redis://localhost:6379/0
-        run: bin/rails db:test:prepare test
+        run: bundle exec rails db:test:prepare && bundle exec rails test
