@@ -59,3 +59,5 @@ gem "rubocop", "~> 1.75", groups: [ :development, :test ]
 gem "rubocop-rails", "~> 2.31", groups: [ :development, :test ]
 
 gem "sidekiq", "~> 8.0"
+
+gem "redis", "~> 5.4"
