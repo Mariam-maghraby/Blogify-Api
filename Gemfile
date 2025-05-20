@@ -56,7 +56,7 @@ gem "active_model_serializers", "~> 0.10.15"
 
 gem "rubocop", "~> 1.75", groups: [ :development, :test ]
 
-gem "rubocop-rails", "~> 2.31", groups: [ :development, :test ]
+gem "rubocop-rails", "~> 2.32", groups: [ :development, :test ]
 
 gem "sidekiq", "~> 8.0"
 
