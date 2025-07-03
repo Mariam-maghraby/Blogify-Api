@@ -54,7 +54,7 @@ end
 
 gem "active_model_serializers", "~> 0.10.15"
 
-gem "rubocop", "~> 1.76", groups: [ :development, :test ]
+gem "rubocop", "~> 1.77", groups: [ :development, :test ]
 
 gem "rubocop-rails", "~> 2.32", groups: [ :development, :test ]
 
